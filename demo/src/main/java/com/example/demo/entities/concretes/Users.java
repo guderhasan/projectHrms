@@ -1,11 +1,14 @@
 package com.example.demo.entities.concretes;
 
 
+import java.util.List;
+
 import javax.annotation.Generated;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.example.demo.entities.abstracts.IEntity;
@@ -27,4 +30,6 @@ private int id;
 private String email;
 	@Column(name="password")
 private String password;
+	
+	
 }

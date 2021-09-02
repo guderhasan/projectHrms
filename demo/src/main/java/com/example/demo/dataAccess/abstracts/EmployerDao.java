@@ -7,4 +7,5 @@ import com.example.demo.entities.concretes.Employer;
 
 public interface EmployerDao extends JpaRepository<Employer,Integer>{
 	 boolean existsUserByEmail(String email);
+	 
 }
