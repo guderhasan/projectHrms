@@ -1,32 +1,39 @@
 package com.example.demo.entities.concretes;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Indexed;
 
 import com.example.demo.entities.abstracts.IEntity;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 @Data
 @Entity
-@Table(name="employees")
+@Table(name="employees") 
 @AllArgsConstructor
 @NoArgsConstructor
 @PrimaryKeyJoinColumn(name="id")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
+
 public class Employee extends Users{
 
-
-@Column(name="id")
-private int id;
-
+@Column(name="foreign_cv_id")
+private int foreignCvId;
+ 
 @Column(name="first_name")
 private String firstName;
 
@@ -42,16 +49,7 @@ private int birthYear;
 private String password2;
 
 
-public Employee(String email,String password,String password2,String first_name,String last_Name,String identity_number,int birth_year) {
 
-	setEmail(email);
-	setPassword(password);
-	this.firstName=first_name;
-	this.lastName=last_Name;
-	this.identityNumber=identity_number;
-	this.birthYear=birth_year;
-	this.password2=password2;
-
-}
-
+@OneToMany(mappedBy="employee")
+private List<Cv> cv;
 }
